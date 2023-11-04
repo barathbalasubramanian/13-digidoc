@@ -50,11 +50,8 @@ def x_ray(request) :
                     'result' : empty_list
                 }
                 print(empty_list)
-                response_data = {
-                    'message': empty_list,
-                }
 
-                return JsonResponse(response_data)
+                return render(request , "home.html")
 
             except : 
                 print( ' exception ')
@@ -340,12 +337,13 @@ def user_login(request):
         user = authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
-            return render( request , "users/user_register.html")
+            print("Login Successfully")
+            return render( request , "users/home.html")
     return render(request,"users/login.html")
 
 
-@login_required
-@user_passes_test(check_trainer)
+# @login_required
+# @user_passes_test(check_trainer)
 def view_trained(request):
     trained_asanas = Asana.objects.filter(created_by = request.user)
     return render(request,"users/view_trained.html",{
@@ -353,8 +351,8 @@ def view_trained(request):
     })
 
 
-@login_required
-@user_passes_test(check_trainer)
+# @login_required
+# @user_passes_test(check_trainer)
 def view_posture(request,asana_id):
     postures = Posture.objects.filter(asana=Asana.objects.get(id=asana_id)).order_by('step_no')
     return render(request,"users/view_posture.html",{
@@ -362,8 +360,8 @@ def view_posture(request,asana_id):
     })
 
 
-@login_required
-@user_passes_test(check_trainer)
+# @login_required
+# @user_passes_test(check_trainer)
 def create_asana(request):
     form = AsanaCreationForm()
     if request.method == "POST":
@@ -388,8 +386,8 @@ def home(request):
     return render(request,"users/home.html")
 
 
-@login_required
-@user_passes_test(check_trainer)
+# @login_required
+# @user_passes_test(check_trainer)
 def edit_posture(request,posture_id):
     posture = Posture.objects.get(id=posture_id)
     if request.method == "POST":
@@ -419,8 +417,8 @@ def edit_posture(request,posture_id):
     })
 
 #model testing user side
-@login_required
-@user_passes_test(check_student)
+# @login_required
+# @user_passes_test(check_student)
 def user_view_asana(request):
     asanas = Asana.objects.all()
     trained_asanas = []
@@ -434,8 +432,8 @@ def user_view_asana(request):
     })
 
 
-@login_required
-@user_passes_test(check_student)
+# @login_required
+# @user_passes_test(check_student)
 def user_view_posture(request,asana_id):
     postures = Posture.objects.filter(asana=Asana.objects.get(id=asana_id)).order_by('step_no')
     return render(request,"users/user_view_posture.html",{
@@ -445,8 +443,8 @@ def user_view_posture(request,asana_id):
 
 
 
-@login_required
-@user_passes_test(check_student)
+# @login_required
+# @user_passes_test(check_student)
 def get_posture(request,posture_id):
     if request.method == "GET":
         link = str(Posture.objects.get(id=posture_id).snap_shot.url)
@@ -455,8 +453,8 @@ def get_posture(request,posture_id):
         return JsonResponse({"error": "expected GET method"})
 
 
-@login_required
-@user_passes_test(check_student)
+# @login_required
+# @user_passes_test(check_student)
 def get_posture_dataset(request):
     if request.method == "GET":
         data = {}

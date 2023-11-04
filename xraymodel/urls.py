@@ -6,6 +6,8 @@ from django.conf import settings
 
 
 urlpatterns = [
+
+
     path("" ,explore),
     path("generate/",type_of_scan_generating),
     path("diseaseprediction/" , Disease_prediction),  
@@ -17,8 +19,7 @@ urlpatterns = [
     path("chatbot/" , chatbot),
 
 
-
-
+    path("knowinmy/" , home ,name="home"  ),
     path("login/",user_login,name="login"),
     path("register/",register,name="register"),
     path("create_asana/",create_asana,name="create-asana"),
