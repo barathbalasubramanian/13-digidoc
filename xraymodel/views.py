@@ -386,6 +386,7 @@ def home(request):
     return render(request,"users/home.html")
 
 
+
 # @login_required
 # @user_passes_test(check_trainer)
 def edit_posture(request,posture_id):
