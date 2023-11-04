@@ -50,7 +50,11 @@ def x_ray(request) :
                     'result' : empty_list
                 }
                 print(empty_list)
-                return render(request, 'xray.html' , context)
+                response_data = {
+                    'message': empty_list,
+                }
+
+                return JsonResponse(response_data)
 
             except : 
                 print( ' exception ')
@@ -336,7 +340,7 @@ def user_login(request):
         user = authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect("home")
+            return render( request , "users/user_register.html")
     return render(request,"users/login.html")
 
 

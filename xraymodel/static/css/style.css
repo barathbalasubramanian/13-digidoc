@@ -20,6 +20,13 @@ a {
   color: #fff;
 }
 
+img {
+    min-width: 18em !important;
+    max-width: 18em !important;
+    min-height: 42vh !important;
+    max-height: 42vh !important;
+}
+
 /* sidebar  */
 
 .container {
@@ -188,4 +195,5 @@ label {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
+  margin-bottom: 2em;
 }
