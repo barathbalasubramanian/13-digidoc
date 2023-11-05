@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
             filenameElement.textContent = e.target.files[0].name;
     });
 
+
+
+    
     var myDropdown = document.querySelector('.my-dropdown');
     myDropdown.addEventListener('change', function() {
         var selectedValue = this.value;
